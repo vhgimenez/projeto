@@ -1,10 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Home } from './Pages/Home/Home.jsx';
+import { Plan } from './Pages/Plan/Plan.jsx';
+import { Actives } from './Pages/Actives/Actives.jsx';
+import { Summary } from './Pages/Actives/Summary/Summary.jsx';
+import GlobalStyle from './styles/global.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <GlobalStyle />
+    <Home />
   </React.StrictMode>,
 )
