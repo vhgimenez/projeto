@@ -1,26 +1,65 @@
-import { useState } from 'react'
+import { React, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BoldText, ButtonBack, ButtonNext, ComboTextOption, Confirmation, Container, Desc, DescConfirmation, DivButton, ImageCheck, Line, Menu, NumberOption, Option, Payment, Price, PriceTotal, Register, Screen, Service, TextOption, TextPrice, TextService, TextTotal, Title, TitleConfirmation, TotalPayment,} from './style'
 
-let buttons = document.querySelectorAll('.buttons');
-let adds = document.querySelectorAll('.adds');
-
-buttons.forEach(button => {
-  button.addEventListener("click", () => {
-    buttons.forEach(btn => {
-      btn.classList.remove("select");
-    });
-    button.classList.add("select");
-  });
-
-});
-
-adds.forEach(add => {
-    add.addEventListener("click", () => {
-        add.classList.toggle("selected-add");
-    });
-});
-
 export function Summary() {
+
+  const [mounted,setMounted] = useState(false)
+  const navigate = useNavigate();
+
+  const BackPage = (e) => {
+    e.preventDefault();
+    navigate('/actives');
+  };
+
+  const Page1 = (e) => {
+    e.preventDefault();
+    navigate('/');
+  };
+
+  const Page2 = (e) => {
+    e.preventDefault();
+    navigate('/plan');
+  };
+
+  useEffect(() => {
+          
+    if(mounted){
+
+      let buttons = document.querySelectorAll('.buttons');
+      let adds = document.querySelectorAll('.adds');
+      let btnConfirm = document.querySelector('.btn-confirm');
+      let register = document.querySelector('.register');
+      let confirmation = document.querySelector('.confirmation');
+
+      buttons.forEach(button => {
+        button.addEventListener("click", () => {
+          buttons.forEach(btn => {
+            btn.classList.remove("select");
+          });
+          button.classList.add("select");
+        });
+
+      });
+
+      adds.forEach(add => {
+          add.addEventListener("click", () => {
+              add.classList.toggle("selected-add");
+          });
+      });
+
+      btnConfirm.addEventListener("click", () => {
+        register.classList.add('hide');
+        confirmation.classList.remove('hide');
+      });
+
+    }
+
+    else{
+        setMounted(true);
+    }
+
+  },[mounted])
 
   return (
     <>
@@ -28,21 +67,21 @@ export function Summary() {
         <Screen>
           <Menu>
             <Option>
-              <NumberOption className='buttons'>1</NumberOption>
+              <NumberOption className='buttons' onClick={Page1}>1</NumberOption>
               <ComboTextOption>
                 <TextOption>Step 1</TextOption>
                 <TextOption><BoldText>Your Info</BoldText></TextOption>
               </ComboTextOption>
             </Option>
             <Option>
-              <NumberOption className='buttons'>2</NumberOption>
+              <NumberOption className='buttons' onClick={Page2}>2</NumberOption>
               <ComboTextOption>
                 <TextOption>Step 2</TextOption>
                 <TextOption><BoldText>Select Plan</BoldText></TextOption>
               </ComboTextOption>
             </Option>
             <Option>
-              <NumberOption className='buttons'>3</NumberOption>
+              <NumberOption className='buttons' onClick={BackPage}>3</NumberOption>
               <ComboTextOption>
                 <TextOption>Step 3</TextOption>
                 <TextOption><BoldText>Add-Ons</BoldText></TextOption>
@@ -56,7 +95,7 @@ export function Summary() {
               </ComboTextOption>
             </Option>
           </Menu>
-          <Register className=''>
+          <Register className='register'>
             <Title>Finishing up</Title>
             <Desc>Double-check everything looks OK before confirming.</Desc>
             <Payment>
@@ -95,11 +134,11 @@ export function Summary() {
                 <PriceTotal className='hide'>$120/yr</PriceTotal>
             </TotalPayment>
             <DivButton>
-                <ButtonBack>Go Back</ButtonBack>
-                <ButtonNext>Confirm</ButtonNext>
+                <ButtonBack onClick={BackPage}>Go Back</ButtonBack>
+                <ButtonNext className='btn-confirm'>Confirm</ButtonNext>
             </DivButton>
           </Register>
-          <Confirmation className='hide'>
+          <Confirmation className='confirmation hide'>
             <ImageCheck src='check.png'></ImageCheck>
             <TitleConfirmation>Thank You!</TitleConfirmation>
             <DescConfirmation>Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.</DescConfirmation>

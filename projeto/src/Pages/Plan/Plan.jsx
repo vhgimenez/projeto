@@ -1,10 +1,27 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BoldText, ButtonBack, ButtonNext, Card, Cards, Check, ComboTextOption, Container, Desc, DivButton, DivCheck, ImageCard, Menu, NumberOption, Option, Price, Register, Screen, TextCheck, TextOption, Title, TitleCard } from './style'
 
 
 export function Plan() {
 
   const [mounted,setMounted] = useState(false)
+  const navigate = useNavigate();
+
+  const BackPage = (e) => {
+    e.preventDefault();
+    navigate('/');
+  };
+
+  const NextPage = (e) => {
+    e.preventDefault();
+    navigate('/actives');
+  };
+
+  const Page4 = (e) => {
+    e.preventDefault();
+    navigate('/summary');
+  };
 
   useEffect(() => {
           
@@ -70,7 +87,7 @@ export function Plan() {
         <Screen>
           <Menu>
             <Option>
-              <NumberOption className='buttons'>1</NumberOption>
+              <NumberOption className='buttons' onClick={BackPage}>1</NumberOption>
               <ComboTextOption>
                 <TextOption>Step 1</TextOption>
                 <TextOption><BoldText>Your Info</BoldText></TextOption>
@@ -84,14 +101,14 @@ export function Plan() {
               </ComboTextOption>
             </Option>
             <Option>
-              <NumberOption className='buttons'>3</NumberOption>
+              <NumberOption className='buttons' onClick={NextPage}>3</NumberOption>
               <ComboTextOption>
                 <TextOption>Step 3</TextOption>
                 <TextOption><BoldText>Add-Ons</BoldText></TextOption>
               </ComboTextOption>
             </Option>
             <Option>
-              <NumberOption className='buttons'>4</NumberOption>
+              <NumberOption className='buttons' onClick={Page4}>4</NumberOption>
               <ComboTextOption>
                 <TextOption>Step 4</TextOption>
                 <TextOption><BoldText>Summary</BoldText></TextOption>
@@ -132,8 +149,8 @@ export function Plan() {
               <TextCheck className='dates'>Yearly</TextCheck>
             </DivCheck>
             <DivButton>
-              <ButtonBack>Go Back</ButtonBack>
-              <ButtonNext>Next Step</ButtonNext>
+              <ButtonBack onClick={BackPage}>Go Back</ButtonBack>
+              <ButtonNext onClick={NextPage}>Next Step</ButtonNext>
             </DivButton>
           </Register>
         </Screen>

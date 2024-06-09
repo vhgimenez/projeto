@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Adds, Add, BoldText, ButtonBack, ButtonNext, Check, ComboTextOption, Container, ContentInfos, Desc, DescInfo, DivButton, Infos, Menu, NumberOption, Option, Price, Register, Screen, TextInfo, TextOption, TextPrice, Title, TitleInfo, } from './style'
 
 let buttons = document.querySelectorAll('.buttons');
@@ -22,20 +23,37 @@ adds.forEach(add => {
 
 export function Actives() {
 
+  const navigate = useNavigate();
+
+  const BackPage = (e) => {
+    e.preventDefault();
+    navigate('/plan');
+  };
+
+  const NextPage = (e) => {
+    e.preventDefault();
+    navigate('/summary');
+  };
+
+  const Page1 = (e) => {
+    e.preventDefault();
+    navigate('/');
+  };
+
   return (
     <>
       <Container>
         <Screen>
           <Menu>
             <Option>
-              <NumberOption className='buttons'>1</NumberOption>
+              <NumberOption className='buttons' onClick={Page1}>1</NumberOption>
               <ComboTextOption>
                 <TextOption>Step 1</TextOption>
                 <TextOption><BoldText>Your Info</BoldText></TextOption>
               </ComboTextOption>
             </Option>
             <Option>
-              <NumberOption className='buttons'>2</NumberOption>
+              <NumberOption className='buttons' onClick={BackPage}>2</NumberOption>
               <ComboTextOption>
                 <TextOption>Step 2</TextOption>
                 <TextOption><BoldText>Select Plan</BoldText></TextOption>
@@ -49,7 +67,7 @@ export function Actives() {
               </ComboTextOption>
             </Option>
             <Option>
-              <NumberOption className='buttons'>4</NumberOption>
+              <NumberOption className='buttons' onClick={NextPage}>4</NumberOption>
               <ComboTextOption>
                 <TextOption>Step 4</TextOption>
                 <TextOption><BoldText>Summary</BoldText></TextOption>
@@ -101,8 +119,8 @@ export function Actives() {
                 </Add>
             </Adds>
             <DivButton>
-                <ButtonBack>Go Back</ButtonBack>
-                <ButtonNext>Next Step</ButtonNext>
+                <ButtonBack onClick={BackPage}>Go Back</ButtonBack>
+                <ButtonNext onClick={NextPage}>Next Step</ButtonNext>
             </DivButton>
           </Register>
         </Screen>

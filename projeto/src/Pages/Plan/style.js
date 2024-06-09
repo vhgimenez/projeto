@@ -6,6 +6,12 @@ export const Container = styled.div`
     height: 100vh;
     display: flex;
 
+    @media (max-width: 768px) {
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+    }
+
 `;
 
 export const Screen = styled.div`
@@ -24,6 +30,17 @@ export const Screen = styled.div`
         opacity: 0;
     }
 
+    
+    @media (max-width: 768px) {
+        width: 100%;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 6rem;
+        padding: 2rem;
+    }
+
 `
 
 export const Menu = styled.div`
@@ -33,6 +50,16 @@ export const Menu = styled.div`
     height: 100%;
     border-radius: 1rem;
     padding: 2.5rem 2rem;
+
+    @media (max-width: 768px) {
+        background: black url("bg-sidebar-mobile.svg") no-repeat center center;
+        background-size: cover;        
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+        height: 5rem;
+    }
 
 `
 
@@ -85,12 +112,22 @@ export const TextOption = styled.p`
     font-weight: 400;
     color: hsl(229, 24%, 87%);
 
+    @media (max-width: 768px) {
+        display: none;
+    }
+
 `
 
 export const Register = styled.div`
 
     margin: 0 auto;
     width: 50%;
+
+    @media (max-width: 768px) {
+        position: relative;
+        width: 100%;
+    }
+
 
 `;
 
@@ -99,6 +136,10 @@ export const Title = styled.h1`
     margin-top: 3rem;
     color: hsl(213, 96%, 18%);
 
+    @media (max-width: 768px) {
+        margin-top: 1rem;
+    }
+
 `;
 
 export const Desc = styled.p`
@@ -106,6 +147,11 @@ export const Desc = styled.p`
     margin-top: .5rem;
     color: hsl(231, 11%, 63%);
     margin-bottom: 3rem;
+
+    @media (max-width: 768px) {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
 
 `;
 
@@ -119,6 +165,10 @@ export const Cards = styled.div`
     
     .selected-card {
         border: 0.01rem solid hsl(243, 100%, 62%) !important;
+    }
+
+    @media (max-width: 768px) {
+        gap: .5rem;
     }
 
 `;
@@ -136,6 +186,10 @@ export const Card = styled.div`
         border-color: hsl(243, 100%, 62%);
     }
 
+    @media (max-width: 768px) {
+        padding: 1rem;
+    }
+
 `;
 
 export const ImageCard = styled.img`
@@ -149,6 +203,11 @@ export const TitleCard = styled.p`
     font-weight: 700;
     font-size: 1.1rem;
 
+    @media (max-width: 768px) {
+        font-size: 1rem;
+        margin-top: 1.5rem;
+    }
+
 `;
 
 export const Price = styled.p`
@@ -161,6 +220,12 @@ export const Price = styled.p`
         font-size: .9rem;
     }
 
+    @media (max-width: 768px) {
+        span {
+            font-size: .8rem;
+        }
+    }
+
 `;
 
 export const DivButton = styled.div`
@@ -170,6 +235,15 @@ export const DivButton = styled.div`
     align-items: end;
     width: 100%;
     height: 7.3rem;
+
+    @media (max-width: 768px) {
+        background-color: white;
+        margin-top: 3rem;
+        padding: 2rem 3rem;
+        position: fixed;
+        margin-left: -3rem;
+        margin-top: 8.3rem;
+    }
 
 `;
 

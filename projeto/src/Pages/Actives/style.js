@@ -6,6 +6,13 @@ export const Container = styled.div`
     height: 100vh;
     display: flex;
 
+    
+    @media (max-width: 768px) {
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+    }
+
 `;
 
 export const Screen = styled.div`
@@ -24,6 +31,16 @@ export const Screen = styled.div`
         opacity: 0;
     }
 
+    @media (max-width: 768px) {
+        width: 100%;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 6rem;
+        padding: 2rem;
+    }
+
 `
 
 export const Menu = styled.div`
@@ -33,6 +50,16 @@ export const Menu = styled.div`
     height: 100%;
     border-radius: 1rem;
     padding: 2.5rem 2rem;
+
+    @media (max-width: 768px) {
+        background: black url("bg-sidebar-mobile.svg") no-repeat center center;
+        background-size: cover;        
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+        height: 5rem;
+    }
 
 `
 
@@ -85,12 +112,21 @@ export const TextOption = styled.p`
     font-weight: 400;
     color: hsl(229, 24%, 87%);
 
+    @media (max-width: 768px) {
+        display: none;
+    }
+
 `
 
 export const Register = styled.div`
 
     margin: 0 auto;
     width: 50%;
+
+    @media (max-width: 768px) {
+        position: relative;
+        width: 100%;
+    }
 
 `;
 
@@ -99,6 +135,10 @@ export const Title = styled.h1`
     margin-top: 3rem;
     color: hsl(213, 96%, 18%);
 
+    @media (max-width: 768px) {
+        margin-top: 1rem;
+    }
+
 `;
 
 export const Desc = styled.p`
@@ -106,6 +146,11 @@ export const Desc = styled.p`
     margin-top: .5rem;
     color: hsl(231, 11%, 63%);
     margin-bottom: 1.5rem;
+
+    @media (max-width: 768px) {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
 
 `;
 
@@ -117,6 +162,16 @@ export const DivButton = styled.div`
     align-items: end;
     width: 100%;
     height: 5.5rem;
+
+    @media (max-width: 768px) {
+        background-color: white;
+        align-items: center;
+        margin-top: 7.1rem;
+        padding: 2rem 3rem;
+        height: 7.3rem;
+        position: fixed;
+        margin-left: -3rem;
+    }
 
 `;
 
@@ -182,6 +237,10 @@ export const Add = styled.div`
         border-color: hsl(243, 100%, 62%);
     }
 
+    @media (max-width: 768px) {
+        padding: 1rem;
+    }
+
 `;
 
 export const Infos = styled.div`
@@ -189,6 +248,10 @@ export const Infos = styled.div`
     display: flex;
     align-items: center;
     gap: 1.5rem;
+
+    @media (max-width: 768px) {
+        gap: 1rem;
+    }
 
 `;
 
@@ -221,6 +284,10 @@ export const TitleInfo = styled.h1`
     font-size: 1.2rem;
     color: hsl(213, 96%, 18%);
 
+    @media (max-width: 768px) {
+        font-size: 1.1rem;
+    }
+
 `;
 
 export const DescInfo = styled.p`
@@ -228,10 +295,18 @@ export const DescInfo = styled.p`
     color: hsl(231, 11%, 63%);
     font-size: 1rem;
 
+    @media (max-width: 768px) {
+        font-size: .9rem;
+    }
+
 `;
 
 export const TextPrice = styled.p`
 
     color: hsl(243, 100%, 62%);
+
+    @media (max-width: 768px) {
+        font-size: .9rem;
+    }
 
 `;
