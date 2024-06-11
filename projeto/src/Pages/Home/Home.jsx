@@ -1,20 +1,44 @@
 import { useState } from 'react'
 import { BoldText, ButtonNext, ComboInput, ComboTextOption, Container, Desc, DivButton, Form, Input, Menu, NumberOption, Option, Register, Screen, TextInput, TextOption, Title } from './style'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-let buttons = document.querySelectorAll('.buttons');
 
-buttons.forEach(button => {
-  button.addEventListener("click", () => {
-    buttons.forEach(btn => {
-      btn.classList.remove("select");
-    });
-    button.classList.add("select");
-  });
-
-});
 
 export function Home() {
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+
+  let buttons = document.querySelectorAll('.buttons');
+
+  const handleRegisterUsers = async () => {     
+    try {
+      const response = await axios.post("http://localhost:3000/users", {
+        name,
+        email,
+        phone
+      });
+
+      console.log('Usuário cadastrado com sucesso!');
+      navigate('/plan');
+        
+    } catch (error) {
+      console.error('Erro ao cadastrar usuário:', error);
+      alert('Erro ao cadastrar usuário. Verifique o console para mais detalhes.');
+    }
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      buttons.forEach(btn => {
+        btn.classList.remove("select");
+      });
+      button.classList.add("select");
+    });
+
+  });
 
   const navigate = useNavigate();
 
@@ -71,21 +95,21 @@ export function Home() {
           <Register>
             <Title>Personal Info</Title>
             <Desc>Please provide your name, email address, and phone number.</Desc>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} method='POST'>
             <ComboInput>
               <TextInput>Name</TextInput>
-              <Input placeholder='e.g. Stephen King' required></Input>
+              <Input placeholder='e.g. Stephen King' required onChange={(event) => { setName(event.target.value) }} name='name' autoComplete='name'></Input>
             </ComboInput>
             <ComboInput>
               <TextInput>Email Address</TextInput>
-              <Input placeholder='e.g. stephenking@lorem.com' required></Input>
+              <Input placeholder='e.g. stephenking@lorem.com' required onChange={(event) => { setEmail(event.target.value) }} name='email' autoComplete='email'></Input>
             </ComboInput>
             <ComboInput>
               <TextInput>Phone Number</TextInput>
-              <Input placeholder='e.g. +1 234 567 890' required></Input>
+              <Input placeholder='e.g. +1 234 567 890' required onChange={(event) => { setPhone(event.target.value) }} name='phone' autoComplete='phone'></Input>
             </ComboInput>
             <DivButton>
-              <ButtonNext>Next Step</ButtonNext>
+              <ButtonNext onClick={handleRegisterUsers}>Next Step</ButtonNext>
             </DivButton>
             </Form>
           </Register>
